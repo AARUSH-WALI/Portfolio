@@ -7,9 +7,20 @@
     <meta name="description" content="Portfolio of Aarush Wali — AI/ML Engineer, Full-Stack Developer, and Cloud Engineer. Building production AI systems, full-stack products, and cloud infrastructure end to end.">
     <meta name="keywords" content="Aarush Wali, AI Engineer, ML Engineer, Full-Stack Developer, Cloud Engineer, Portfolio, React, Next.js, Python, GCP">
     <meta name="author" content="Aarush Wali">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    <meta name="theme-color" content="#0A0F1E">
     <meta property="og:title" content="Aarush Wali — AI/ML Engineer & Full-Stack Developer">
     <meta property="og:description" content="Building production AI systems, full-stack products, and cloud infrastructure — end to end.">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aarushwaliportfolio.vercel.app">
+    <meta property="og:image" content="https://aarushwaliportfolio.vercel.app/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Aarush Wali — AI/ML Engineer & Full-Stack Developer">
+    <meta name="twitter:description" content="Building production AI systems, full-stack products, and cloud infrastructure — end to end.">
+    <meta name="twitter:image" content="https://aarushwaliportfolio.vercel.app/og-image.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -2002,6 +2013,386 @@
                 grid-column: span 2;
             }
         }
+
+        /* ========== COMMAND PALETTE ========== */
+        .cmd-k-badge {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-glass);
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 5px 11px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.78rem;
+            font-family: 'Space Grotesk', monospace;
+            font-weight: 700;
+            border-radius: var(--radius-sm);
+            transition: all var(--transition-fast);
+        }
+
+        .cmd-k-badge:hover {
+            color: var(--text-primary);
+            border-color: var(--accent-glow);
+            background: var(--accent-light);
+            transform: translateY(-1px);
+        }
+
+        body.light-theme .cmd-k-badge {
+            background: rgba(0, 0, 0, 0.05);
+            border-color: rgba(0, 0, 0, 0.1);
+            color: #4B5563;
+        }
+
+        body.light-theme .cmd-k-badge:hover {
+            background: rgba(37, 99, 235, 0.1);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .cmd-palette-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 15, 30, 0.75);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 100px 20px 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+        }
+
+        .cmd-palette-backdrop.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cmd-palette-modal {
+            background: rgba(17, 24, 39, 0.96);
+            border: 1px solid var(--border-glass-hover);
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 50px rgba(37, 99, 235, 0.2);
+            overflow: hidden;
+            transform: scale(0.96) translateY(-10px);
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cmd-palette-backdrop.active .cmd-palette-modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .cmd-palette-search {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-glass);
+            color: var(--text-muted);
+        }
+
+        .cmd-palette-search input {
+            flex: 1;
+            background: none;
+            border: none;
+            outline: none;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 1.05rem;
+        }
+
+        .cmd-palette-search input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .cmd-kbd {
+            font-size: 0.72rem;
+            font-family: 'Space Grotesk', monospace;
+            padding: 3px 8px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-muted);
+            border: 1px solid var(--border-glass);
+        }
+
+        .cmd-palette-list {
+            max-height: 360px;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .cmd-group-label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            color: var(--text-muted);
+            padding: 10px 12px 4px;
+        }
+
+        .cmd-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 11px 14px;
+            border-radius: var(--radius-sm);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            user-select: none;
+        }
+
+        .cmd-item:hover,
+        .cmd-item.selected {
+            background: var(--accent-light);
+            color: var(--text-primary);
+        }
+
+        .cmd-item-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .cmd-item-title {
+            font-size: 0.95rem;
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .cmd-item-hint {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+        }
+
+        .cmd-palette-footer {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 16px;
+            padding: 12px 20px;
+            border-top: 1px solid var(--border-glass);
+            background: rgba(10, 15, 30, 0.5);
+            font-size: 0.76rem;
+            color: var(--text-muted);
+        }
+
+        .cmd-palette-footer kbd {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-glass);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: inherit;
+        }
+
+        body.light-theme .cmd-palette-modal {
+            background: #FFFFFF;
+            border-color: rgba(0, 0, 0, 0.1);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15), 0 0 40px rgba(37, 99, 235, 0.08);
+        }
+
+        body.light-theme .cmd-palette-footer {
+            background: #F9FAFB;
+        }
+
+        body.light-theme .cmd-item:hover,
+        body.light-theme .cmd-item.selected {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--accent);
+        }
+
+        body.light-theme .cmd-kbd,
+        body.light-theme .cmd-palette-footer kbd {
+            background: rgba(0, 0, 0, 0.06);
+            border-color: rgba(0, 0, 0, 0.1);
+            color: #4B5563;
+        }
+
+        /* ========== PROJECT FILTERS ========== */
+        .project-filters {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--gradient-card);
+            border: 1px solid var(--border-glass);
+            color: var(--text-secondary);
+            font-family: inherit;
+            font-size: 0.88rem;
+            font-weight: 600;
+            padding: 9px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(8px);
+        }
+
+        .filter-btn .filter-count {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-muted);
+            transition: all var(--transition-fast);
+        }
+
+        .filter-btn:hover {
+            color: var(--text-primary);
+            border-color: var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background: var(--gradient-accent);
+            border-color: transparent;
+            color: #FFFFFF;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.35);
+        }
+
+        .filter-btn.active .filter-count {
+            background: rgba(255, 255, 255, 0.25);
+            color: #FFFFFF;
+        }
+
+        body.light-theme .filter-btn {
+            background: #FFFFFF;
+            border-color: rgba(0, 0, 0, 0.1);
+            color: #4B5563;
+        }
+
+        body.light-theme .filter-btn .filter-count {
+            background: rgba(0, 0, 0, 0.06);
+            color: #6B7280;
+        }
+
+        body.light-theme .filter-btn:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        body.light-theme .filter-btn.active {
+            background: var(--gradient-accent);
+            color: #FFFFFF;
+            border-color: transparent;
+        }
+
+        body.light-theme .filter-btn.active .filter-count {
+            background: rgba(255, 255, 255, 0.25);
+            color: #FFFFFF;
+        }
+
+        .project-card.filter-hidden {
+            display: none !important;
+        }
+
+        /* ========== COPY EMAIL & TOAST ========== */
+        .copy-email-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-glass);
+            color: var(--text-secondary);
+            padding: 10px 18px;
+            border-radius: var(--radius-md);
+            font-family: inherit;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .copy-email-btn:hover {
+            color: var(--text-primary);
+            border-color: var(--accent-glow);
+            background: var(--accent-light);
+            transform: translateY(-2px);
+        }
+
+        body.light-theme .copy-email-btn {
+            background: #FFFFFF;
+            border-color: rgba(0, 0, 0, 0.1);
+            color: #374151;
+        }
+
+        body.light-theme .copy-email-btn:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            background: rgba(37, 99, 235, 0.08);
+        }
+
+        .toast-container {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 3000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            pointer-events: none;
+        }
+
+        .toast {
+            background: rgba(17, 24, 39, 0.95);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            color: #FFFFFF;
+            padding: 14px 22px;
+            border-radius: var(--radius-md);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(16, 185, 129, 0.2);
+            backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.92rem;
+            font-weight: 500;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: auto;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast-icon {
+            color: var(--success);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        body.light-theme .toast {
+            background: #FFFFFF;
+            border-color: rgba(16, 185, 129, 0.5);
+            color: #111827;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12), 0 0 20px rgba(16, 185, 129, 0.15);
+        }
     </style>
 </head>
 <body>
@@ -2020,6 +2411,11 @@
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#education">Education</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li>
+                    <button class="cmd-k-badge" id="cmdKTrigger" aria-label="Command Menu" title="Quick Actions (⌘K / Ctrl+K)">
+                        <span>⌘K</span>
+                    </button>
+                </li>
                 <li>
                     <button class="theme-toggle" id="themeToggleDesktop" aria-label="Toggle Theme">
                         <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -2045,6 +2441,11 @@
             <li><a href="#skills" class="mobile-link">Skills</a></li>
             <li><a href="#education" class="mobile-link">Education</a></li>
             <li><a href="#contact" class="mobile-link">Contact</a></li>
+            <li>
+                <button class="cmd-k-badge" id="cmdKTriggerMobile" style="width: 100%; justify-content: center; padding: 10px; font-size: 0.9rem;">
+                    Quick Actions (⌘K)
+                </button>
+            </li>
             <li>
                 <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle Theme">
                     <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -2096,6 +2497,10 @@
                     <a href="mailto:work.aarushwali@gmail.com" class="social-icon" aria-label="Email">
                         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                     </a>
+                    <button class="copy-email-btn" id="copyEmailHeroBtn" aria-label="Copy Email to Clipboard" title="Copy work.aarushwali@gmail.com">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                        <span>Copy Email</span>
+                    </button>
                 </div>
             </div>
             <!-- Hero Profile Image -->
@@ -2271,9 +2676,16 @@
                 <h2 class="section-title">Projects</h2>
                 <div class="section-line"></div>
             </div>
+            <!-- Project Filter Controls -->
+            <div class="project-filters reveal">
+                <button class="filter-btn active" data-filter="all">All <span class="filter-count">5</span></button>
+                <button class="filter-btn" data-filter="ai">Edge AI & Vision <span class="filter-count">2</span></button>
+                <button class="filter-btn" data-filter="fullstack">Full-Stack & Web <span class="filter-count">1</span></button>
+                <button class="filter-btn" data-filter="research">Research & Patented <span class="filter-count">2</span></button>
+            </div>
             <div class="projects-grid">
                 <!-- Project 1: EditoDoc -->
-                <div class="project-card featured reveal reveal-delay-1">
+                <div class="project-card featured reveal reveal-delay-1" data-category="fullstack">
                     <span class="featured-label">⭐ Featured Project</span>
                     <div class="project-top">
                         <div class="project-icon">📄</div>
@@ -2325,7 +2737,7 @@
                 </div>
 
                 <!-- Project 2: WildGuard AI -->
-                <div class="project-card reveal reveal-delay-2">
+                <div class="project-card reveal reveal-delay-2" data-category="ai">
                     <div class="project-top">
                         <div class="project-icon">🌾</div>
                         <div class="project-links">
@@ -2364,7 +2776,7 @@
                 </div>
 
                 <!-- Project 3: A2-SCI (TouchlessMouse) -->
-                <div class="project-card reveal reveal-delay-3">
+                <div class="project-card reveal reveal-delay-3" data-category="ai">
                     <div class="project-top">
                         <div class="project-icon">🖐️</div>
                         <div class="project-links">
@@ -2403,7 +2815,7 @@
                 </div>
 
                 <!-- Project 4: People.ai -->
-                <div class="project-card reveal reveal-delay-1">
+                <div class="project-card reveal reveal-delay-1" data-category="research">
                     <div class="project-top">
                         <div class="project-icon">🧠</div>
                         <div class="project-links">
@@ -2440,7 +2852,7 @@
                 </div>
 
                 <!-- Project 5: Thyroid -->
-                <div class="project-card reveal reveal-delay-2">
+                <div class="project-card reveal reveal-delay-2" data-category="research">
                     <div class="project-top">
                         <div class="project-icon">🔬</div>
                         <div class="project-links">
@@ -2737,13 +3149,19 @@
                         Open to full-time roles (on-site or remote) and collaboration. Reach out anytime — I'd love to hear about what you're building.
                     </p>
                     <div class="contact-cards">
-                        <a href="mailto:work.aarushwali@gmail.com" class="contact-card">
+                        <div class="contact-card" onclick="copyEmailToClipboard(event)" style="cursor: pointer;" title="Click to copy work.aarushwali@gmail.com">
                             <div class="contact-card-icon">📧</div>
-                            <div>
-                                <div class="contact-card-label">Email</div>
+                            <div style="flex: 1;">
+                                <div class="contact-card-label" style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span>Email</span>
+                                    <span style="font-size: 0.72rem; color: var(--accent-glow); display: inline-flex; align-items: center; gap: 4px;">
+                                        <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                                        Click to copy
+                                    </span>
+                                </div>
                                 <div class="contact-card-value">work.aarushwali@gmail.com</div>
                             </div>
-                        </a>
+                        </div>
                         <a href="https://www.linkedin.com/in/aarush-wali-a93b60249" class="contact-card" target="_blank" rel="noopener">
                             <div class="contact-card-icon">💼</div>
                             <div>
@@ -3097,6 +3515,372 @@
             if(themeToggleDesktop) themeToggleDesktop.addEventListener('click', toggleTheme);
             if(themeToggleMobile) themeToggleMobile.addEventListener('click', toggleTheme);
         })();
+
+        // ====== TOAST NOTIFICATION ======
+        function showToast(message) {
+            const container = document.getElementById('toastContainer');
+            if (!container) return;
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `
+                <span class="toast-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <span>${message}</span>
+            `;
+            container.appendChild(toast);
+            requestAnimationFrame(() => {
+                toast.classList.add('show');
+            });
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // ====== COPY EMAIL ======
+        function copyEmailToClipboard(e) {
+            if (e && e.preventDefault) e.preventDefault();
+            const email = 'work.aarushwali@gmail.com';
+            
+            const doCopy = () => {
+                showToast('Email copied to clipboard: ' + email);
+                const heroBtn = document.getElementById('copyEmailHeroBtn');
+                if (heroBtn) {
+                    const originalHtml = heroBtn.innerHTML;
+                    heroBtn.innerHTML = `
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>Copied!</span>
+                    `;
+                    setTimeout(() => { heroBtn.innerHTML = originalHtml; }, 2000);
+                }
+            };
+
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(email).then(doCopy).catch(() => {
+                    fallbackCopy(email, doCopy);
+                });
+            } else {
+                fallbackCopy(email, doCopy);
+            }
+        }
+
+        function fallbackCopy(text, callback) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.focus();
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                if (callback) callback();
+            } catch (err) {
+                showToast('Failed to copy. Email: ' + text);
+            }
+            document.body.removeChild(textarea);
+        }
+
+        // Connect hero copy email button
+        const copyEmailHeroBtn = document.getElementById('copyEmailHeroBtn');
+        if (copyEmailHeroBtn) {
+            copyEmailHeroBtn.addEventListener('click', copyEmailToClipboard);
+        }
+
+        // ====== PROJECT FILTERS ======
+        (function initProjectFilters() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card[data-category]');
+            if (!filterBtns.length || !projectCards.length) return;
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const filter = btn.getAttribute('data-filter');
+                    projectCards.forEach(card => {
+                        const category = card.getAttribute('data-category');
+                        if (filter === 'all' || category === filter) {
+                            card.classList.remove('filter-hidden');
+                        } else {
+                            card.classList.add('filter-hidden');
+                        }
+                    });
+                });
+            });
+        })();
+
+        // ====== COMMAND PALETTE ======
+        (function initCmdPalette() {
+            const palette = document.getElementById('cmdPalette');
+            const searchInput = document.getElementById('cmdSearchInput');
+            const cmdItems = document.querySelectorAll('.cmd-item');
+            const cmdKTrigger = document.getElementById('cmdKTrigger');
+            const cmdKTriggerMobile = document.getElementById('cmdKTriggerMobile');
+
+            if (!palette || !searchInput) return;
+
+            function openPalette() {
+                palette.classList.add('active');
+                searchInput.value = '';
+                filterItems('');
+                setSelected(0);
+                setTimeout(() => searchInput.focus(), 50);
+            }
+
+            function closePalette() {
+                palette.classList.remove('active');
+            }
+
+            function getVisibleItems() {
+                return Array.from(cmdItems).filter(item => item.style.display !== 'none');
+            }
+
+            function setSelected(index) {
+                const visible = getVisibleItems();
+                visible.forEach(item => item.classList.remove('selected'));
+                if (visible[index]) {
+                    visible[index].classList.add('selected');
+                    visible[index].scrollIntoView({ block: 'nearest' });
+                }
+            }
+
+            function getSelectedIndex() {
+                const visible = getVisibleItems();
+                return visible.findIndex(item => item.classList.contains('selected'));
+            }
+
+            function filterItems(query) {
+                const q = query.toLowerCase().trim();
+                cmdItems.forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    const action = item.getAttribute('data-action') || '';
+                    if (!q || text.includes(q) || action.includes(q)) {
+                        item.style.display = 'flex';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+
+                // Hide empty groups
+                document.querySelectorAll('.cmd-group-label').forEach(label => {
+                    let next = label.nextElementSibling;
+                    let hasVisible = false;
+                    while (next && !next.classList.contains('cmd-group-label')) {
+                        if (next.classList.contains('cmd-item') && next.style.display !== 'none') {
+                            hasVisible = true;
+                            break;
+                        }
+                        next = next.nextElementSibling;
+                    }
+                    label.style.display = hasVisible ? 'block' : 'none';
+                });
+
+                const visible = getVisibleItems();
+                if (visible.length > 0) {
+                    setSelected(0);
+                }
+            }
+
+            function executeItem(item) {
+                if (!item) return;
+                const action = item.getAttribute('data-action');
+                closePalette();
+
+                if (action === 'navigate') {
+                    const target = document.querySelector(item.getAttribute('data-target'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                } else if (action === 'copy-email') {
+                    copyEmailToClipboard();
+                } else if (action === 'toggle-theme') {
+                    document.body.classList.toggle('light-theme');
+                    const isLight = document.body.classList.contains('light-theme');
+                    localStorage.setItem('portfolio-theme', isLight ? 'light' : 'dark');
+                    showToast(isLight ? 'Switched to Light Mode' : 'Switched to Dark Mode');
+                } else if (action === 'open-url') {
+                    const url = item.getAttribute('data-url');
+                    if (url) window.open(url, '_blank', 'noopener,noreferrer');
+                } else if (action === 'filter-projects') {
+                    const filter = item.getAttribute('data-filter');
+                    const filterBtn = document.querySelector(`.filter-btn[data-filter="${filter}"]`);
+                    if (filterBtn) filterBtn.click();
+                    const target = document.getElementById('projects');
+                    if (target) target.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+
+            // Keyboard shortcut Cmd+K / Ctrl+K
+            window.addEventListener('keydown', (e) => {
+                if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+                    e.preventDefault();
+                    if (palette.classList.contains('active')) {
+                        closePalette();
+                    } else {
+                        openPalette();
+                    }
+                } else if (e.key === 'Escape' && palette.classList.contains('active')) {
+                    e.preventDefault();
+                    closePalette();
+                }
+            });
+
+            // Input keyboard navigation
+            searchInput.addEventListener('keydown', (e) => {
+                const visible = getVisibleItems();
+                const currentIndex = getSelectedIndex();
+
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    const next = (currentIndex + 1) % visible.length;
+                    setSelected(next);
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    const prev = (currentIndex - 1 + visible.length) % visible.length;
+                    setSelected(prev);
+                } else if (e.key === 'Enter') {
+                    e.preventDefault();
+                    if (visible[currentIndex]) {
+                        executeItem(visible[currentIndex]);
+                    }
+                }
+            });
+
+            searchInput.addEventListener('input', (e) => {
+                filterItems(e.target.value);
+            });
+
+            cmdItems.forEach(item => {
+                item.addEventListener('click', () => executeItem(item));
+                item.addEventListener('mouseenter', () => {
+                    const visible = getVisibleItems();
+                    const idx = visible.indexOf(item);
+                    if (idx !== -1) setSelected(idx);
+                });
+            });
+
+            palette.addEventListener('click', (e) => {
+                if (e.target === palette) {
+                    closePalette();
+                }
+            });
+
+            if (cmdKTrigger) cmdKTrigger.addEventListener('click', openPalette);
+            if (cmdKTriggerMobile) {
+                cmdKTriggerMobile.addEventListener('click', () => {
+                    const hamburger = document.getElementById('hamburger');
+                    const mobileMenu = document.getElementById('mobileMenu');
+                    if (hamburger) hamburger.classList.remove('active');
+                    if (mobileMenu) mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                    openPalette();
+                });
+            }
+        })();
     </script>
+
+    <!-- ===== TOAST NOTIFICATION CONTAINER ===== -->
+    <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+    <!-- ===== COMMAND PALETTE (CMD+K / CTRL+K) ===== -->
+    <div class="cmd-palette-backdrop" id="cmdPalette" role="dialog" aria-modal="true" aria-label="Command Palette">
+        <div class="cmd-palette-modal">
+            <div class="cmd-palette-search">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                </svg>
+                <input type="text" id="cmdSearchInput" placeholder="Type a command or jump to section..." autocomplete="off" spellcheck="false">
+                <span class="cmd-kbd">ESC</span>
+            </div>
+            <div class="cmd-palette-list" id="cmdList">
+                <div class="cmd-group-label">Navigation</div>
+                <div class="cmd-item" data-action="navigate" data-target="#about">
+                    <div class="cmd-item-icon">👤</div>
+                    <div class="cmd-item-title">About Me</div>
+                    <div class="cmd-item-hint">Go to About</div>
+                </div>
+                <div class="cmd-item" data-action="navigate" data-target="#experience">
+                    <div class="cmd-item-icon">💼</div>
+                    <div class="cmd-item-title">Experience & Internships</div>
+                    <div class="cmd-item-hint">Go to Experience</div>
+                </div>
+                <div class="cmd-item" data-action="navigate" data-target="#projects">
+                    <div class="cmd-item-icon">🚀</div>
+                    <div class="cmd-item-title">Featured Projects</div>
+                    <div class="cmd-item-hint">Go to Projects</div>
+                </div>
+                <div class="cmd-item" data-action="navigate" data-target="#publications">
+                    <div class="cmd-item-icon">📚</div>
+                    <div class="cmd-item-title">Research & Publications</div>
+                    <div class="cmd-item-hint">Go to Research</div>
+                </div>
+                <div class="cmd-item" data-action="navigate" data-target="#skills">
+                    <div class="cmd-item-icon">⚡</div>
+                    <div class="cmd-item-title">Technical Skills</div>
+                    <div class="cmd-item-hint">Go to Skills</div>
+                </div>
+                <div class="cmd-item" data-action="navigate" data-target="#education">
+                    <div class="cmd-item-icon">🎓</div>
+                    <div class="cmd-item-title">Education & Certifications</div>
+                    <div class="cmd-item-hint">Go to Education</div>
+                </div>
+                <div class="cmd-item" data-action="navigate" data-target="#contact">
+                    <div class="cmd-item-icon">✉️</div>
+                    <div class="cmd-item-title">Contact & Inquiries</div>
+                    <div class="cmd-item-hint">Go to Contact</div>
+                </div>
+
+                <div class="cmd-group-label">Quick Actions</div>
+                <div class="cmd-item" data-action="copy-email">
+                    <div class="cmd-item-icon">📋</div>
+                    <div class="cmd-item-title">Copy Email Address</div>
+                    <div class="cmd-item-hint">work.aarushwali@gmail.com</div>
+                </div>
+                <div class="cmd-item" data-action="toggle-theme">
+                    <div class="cmd-item-icon">🌓</div>
+                    <div class="cmd-item-title">Toggle Dark / Light Theme</div>
+                    <div class="cmd-item-hint">Theme switch</div>
+                </div>
+                <div class="cmd-item" data-action="open-url" data-url="https://drive.google.com/file/d/1Bf83Y5f4y-3NfxkS7V9Dq0a-n9wPqM7s/view?usp=sharing">
+                    <div class="cmd-item-icon">📄</div>
+                    <div class="cmd-item-title">View Official Resume</div>
+                    <div class="cmd-item-hint">Google Drive PDF</div>
+                </div>
+                <div class="cmd-item" data-action="open-url" data-url="https://github.com/AARUSH-WALI">
+                    <div class="cmd-item-icon">🐙</div>
+                    <div class="cmd-item-title">Open GitHub Profile</div>
+                    <div class="cmd-item-hint">github.com/AARUSH-WALI</div>
+                </div>
+                <div class="cmd-item" data-action="open-url" data-url="https://www.linkedin.com/in/aarush-wali-a93b60249">
+                    <div class="cmd-item-icon">💼</div>
+                    <div class="cmd-item-title">Open LinkedIn Profile</div>
+                    <div class="cmd-item-hint">linkedin.com/in/aarush-wali</div>
+                </div>
+                <div class="cmd-item" data-action="filter-projects" data-filter="ai">
+                    <div class="cmd-item-icon">🤖</div>
+                    <div class="cmd-item-title">Filter Projects: Edge AI & Vision</div>
+                    <div class="cmd-item-hint">WildGuard & A2-SCI</div>
+                </div>
+                <div class="cmd-item" data-action="filter-projects" data-filter="fullstack">
+                    <div class="cmd-item-icon">💻</div>
+                    <div class="cmd-item-title">Filter Projects: Full-Stack & Web</div>
+                    <div class="cmd-item-hint">EditoDoc</div>
+                </div>
+                <div class="cmd-item" data-action="filter-projects" data-filter="research">
+                    <div class="cmd-item-icon">🔬</div>
+                    <div class="cmd-item-title">Filter Projects: Research & Patents</div>
+                    <div class="cmd-item-hint">People.ai & Thyroid</div>
+                </div>
+            </div>
+            <div class="cmd-palette-footer">
+                <span>Navigate <kbd>↑</kbd> <kbd>↓</kbd></span>
+                <span>Select <kbd>↵</kbd></span>
+                <span>Close <kbd>ESC</kbd></span>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
