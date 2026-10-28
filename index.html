@@ -1222,10 +1222,40 @@
             border: 1px solid rgba(124, 58, 237, 0.3);
         }
 
+        .badge-vision {
+            background: rgba(37, 99, 235, 0.15);
+            color: #60A5FA;
+            border: 1px solid rgba(37, 99, 235, 0.3);
+        }
+
+        .badge-hci {
+            background: rgba(236, 72, 153, 0.15);
+            color: #F472B6;
+            border: 1px solid rgba(236, 72, 153, 0.3);
+        }
+
         .badge-year {
             background: rgba(255,255,255,0.05);
             color: var(--text-muted);
             border: 1px solid var(--border-glass);
+        }
+
+        body.light-theme .badge-vision {
+            color: #1D4ED8;
+            background: rgba(37, 99, 235, 0.12);
+            border-color: rgba(37, 99, 235, 0.25);
+        }
+
+        body.light-theme .badge-hci {
+            color: #BE185D;
+            background: rgba(236, 72, 153, 0.12);
+            border-color: rgba(236, 72, 153, 0.25);
+        }
+
+        body.light-theme .badge-research {
+            color: #6D28D9;
+            background: rgba(124, 58, 237, 0.12);
+            border-color: rgba(124, 58, 237, 0.25);
         }
 
         .project-desc {
@@ -2281,7 +2311,122 @@
                     </div>
                 </div>
 
-                <!-- Project 2: Thyroid -->
+                <!-- Project 2: WildGuard AI -->
+                <div class="project-card reveal reveal-delay-2">
+                    <div class="project-top">
+                        <div class="project-icon">🌾</div>
+                        <div class="project-links">
+                            <a href="https://github.com/AARUSH-WALI/YOLO-base-FarmAnimalRiskDetection" class="project-link" target="_blank" rel="noopener" aria-label="GitHub Repository">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                    <h3 class="project-title">WildGuard AI — Wildlife Intrusion Alert System</h3>
+                    <div class="project-badges">
+                        <span class="badge badge-vision">🌾 Edge AI & Vision</span>
+                        <span class="badge badge-year">2025</span>
+                    </div>
+                    <p class="project-desc">
+                        Autonomous edge computer vision framework protecting agricultural perimeters from primate crop-raiding and wildlife hazards using a dual-model YOLOv8 ensemble.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">YOLOv8</span>
+                        <span class="tag">PyTorch</span>
+                        <span class="tag">Computer Vision</span>
+                        <span class="tag">Roboflow</span>
+                        <span class="tag">Flask</span>
+                        <span class="tag">Socket.IO</span>
+                        <span class="tag">Edge AI</span>
+                        <span class="tag">Python</span>
+                    </div>
+                    <div class="project-details">
+                        <div class="project-details-title">Key Highlights</div>
+                        <ul>
+                            <li>Solved the <strong>MS-COCO primate gap</strong> by fine-tuning YOLOv8 on <strong>5,355 Roboflow images</strong> with human & foliage counter-examples (<strong>75.1% mAP₅₀</strong>)</li>
+                            <li>Engineered a <strong>hierarchical dual-model ensemble</strong> with active counter-class suppression shielding workers and livestock</li>
+                            <li>Implemented <strong>dynamic troop-context relabeling</strong> to eliminate back-facing monkey misclassification as critical bear alerts</li>
+                            <li>Built a <strong>temporal persistence engine (≥ 2.0s)</strong> with real-time Flask & Socket.IO telemetry, eliminating single-frame false alarms</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Project 3: A2-SCI (TouchlessMouse) -->
+                <div class="project-card reveal reveal-delay-3">
+                    <div class="project-top">
+                        <div class="project-icon">🖐️</div>
+                        <div class="project-links">
+                            <a href="https://github.com/AARUSH-WALI/TouchlessMouse" class="project-link" target="_blank" rel="noopener" aria-label="GitHub Repository">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                    <h3 class="project-title">A2-SCI — Spatial Computing & Air Mouse Interface</h3>
+                    <div class="project-badges">
+                        <span class="badge badge-hci">🖐️ Spatial HCI / Assistive</span>
+                        <span class="badge badge-year">2025</span>
+                    </div>
+                    <p class="project-desc">
+                        Vision-guided spatial computing framework eliminating physical mouse contact for sterile surgical PACS CT/MRI viewing and motor-impaired tremor accessibility via standard webcams.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">MediaPipe</span>
+                        <span class="tag">PyTorch</span>
+                        <span class="tag">Bi-LSTM</span>
+                        <span class="tag">One-Euro Filter</span>
+                        <span class="tag">WebAssembly</span>
+                        <span class="tag">OpenCV</span>
+                        <span class="tag">HCI</span>
+                        <span class="tag">Python</span>
+                    </div>
+                    <div class="project-details">
+                        <div class="project-details-title">Key Highlights</div>
+                        <ul>
+                            <li>Engineered a <strong>4-stage ML ensemble pipeline</strong>: 21 3D hand skeletal landmarks + Bi-LSTM kinematics achieving <strong>98.4% gesture accuracy</strong></li>
+                            <li>Designed a <strong>neuromuscular tremor discriminator</strong> with adaptive <strong>One-Euro filtering</strong> achieving <strong>&lt; 1.2 px cursor stillness at rest</strong></li>
+                            <li>Built multi-domain workstations including a <strong>Sterile Surgical PACS CT/MRI viewer</strong> with real-time edge contour & Hounsfield Unit density inference</li>
+                            <li>Operates at ultra-low <strong>38 ms end-to-end optical latency</strong> with 100% edge privacy, zero telemetry, and native OS daemon integration</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Project 4: People.ai -->
+                <div class="project-card reveal reveal-delay-1">
+                    <div class="project-top">
+                        <div class="project-icon">🧠</div>
+                        <div class="project-links">
+                            <a href="https://github.com/AARUSH-WALI" class="project-link" target="_blank" rel="noopener" aria-label="GitHub">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                    <h3 class="project-title">People.ai — AI Recruitment System</h3>
+                    <div class="project-badges">
+                        <span class="badge badge-patented">🔒 Patented</span>
+                        <span class="badge badge-year">2025</span>
+                    </div>
+                    <p class="project-desc">
+                        Patented AI system for faculty recruitment — predicts candidate fitment and retention scores using ML, reducing manual evaluation time by 60%.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Scikit-learn</span>
+                        <span class="tag">Random Forest</span>
+                        <span class="tag">Supabase</span>
+                        <span class="tag">PostgreSQL</span>
+                        <span class="tag">REST APIs</span>
+                    </div>
+                    <div class="project-details">
+                        <div class="project-details-title">Key Highlights</div>
+                        <ul>
+                            <li>Contributor to a <strong>patented AI recruitment system</strong> with predictive fitment and retention scores</li>
+                            <li>Engineered the core ML pipeline: data parsing, <strong>Big Five trait integration</strong>, multi-class fitment models</li>
+                            <li>Validated using <strong>5-fold cross-validation and ROC-based threshold tuning</strong></li>
+                            <li>Designed <strong>prediction-serving architecture</strong> reducing manual evaluation time by <strong>60%</strong></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Project 5: Thyroid -->
                 <div class="project-card reveal reveal-delay-2">
                     <div class="project-top">
                         <div class="project-icon">🔬</div>
@@ -2314,43 +2459,6 @@
                             <li>Achieved <strong>95% classification accuracy</strong> through thorough EDA, data cleaning, and feature engineering</li>
                             <li>Conducted performance benchmarking using precision, recall, F1-score, and ROC-AUC</li>
                             <li>Complete pipeline: data ingestion → cleaning → EDA → feature engineering → model training → evaluation</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Project 3: People.ai -->
-                <div class="project-card reveal reveal-delay-3">
-                    <div class="project-top">
-                        <div class="project-icon">🧠</div>
-                        <div class="project-links">
-                            <a href="https://github.com/AARUSH-WALI" class="project-link" target="_blank" rel="noopener" aria-label="GitHub">
-                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                            </a>
-                        </div>
-                    </div>
-                    <h3 class="project-title">People.ai — AI Recruitment System</h3>
-                    <div class="project-badges">
-                        <span class="badge badge-patented">🔒 Patented</span>
-                        <span class="badge badge-year">2025</span>
-                    </div>
-                    <p class="project-desc">
-                        Patented AI system for faculty recruitment — predicts candidate fitment and retention scores using ML, reducing manual evaluation time by 60%.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">Scikit-learn</span>
-                        <span class="tag">Random Forest</span>
-                        <span class="tag">Supabase</span>
-                        <span class="tag">PostgreSQL</span>
-                        <span class="tag">REST APIs</span>
-                    </div>
-                    <div class="project-details">
-                        <div class="project-details-title">Key Highlights</div>
-                        <ul>
-                            <li>Contributor to a <strong>patented AI recruitment system</strong> with predictive fitment and retention scores</li>
-                            <li>Engineered the core ML pipeline: data parsing, <strong>Big Five trait integration</strong>, multi-class fitment models</li>
-                            <li>Validated using <strong>5-fold cross-validation and ROC-based threshold tuning</strong></li>
-                            <li>Designed <strong>prediction-serving architecture</strong> reducing manual evaluation time by <strong>60%</strong></li>
                         </ul>
                     </div>
                 </div>

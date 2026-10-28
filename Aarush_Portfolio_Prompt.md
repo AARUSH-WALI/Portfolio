@@ -127,23 +127,39 @@ Build a **stunning, modern, single-page portfolio website** for Aarush Wali — 
 
 ---
 
-### Project 2 — Thyroid Disease Detection System
-- **Name:** Thyroid Disease Detection System
-- **GitHub:** https://github.com/AARUSH-WALI
-- **Year:** 2024
-- **Status badge:** ⚙️ Research Project
-- **Stack badge tags:** Python · Scikit-learn · Pandas · NumPy · EDA · Feature Engineering · Model Benchmarking
+### Project 2 — WildGuard AI (Agricultural Wildlife Intrusion Alert System)
+- **Name:** WildGuard AI — Agricultural Wildlife Intrusion Alert & Census System
+- **GitHub:** https://github.com/AARUSH-WALI/YOLO-base-FarmAnimalRiskDetection
+- **Year:** 2025
+- **Status badge:** 🌾 Edge AI & Vision
+- **Stack badge tags:** YOLOv8 · PyTorch · Computer Vision · Roboflow · Flask · Socket.IO · Edge AI · Python
 - **Short description (card):**
-  > ML classification system detecting thyroid disorders — benchmarked Logistic Regression, SVM, and Random Forest achieving 95% accuracy.
-- **Full description (expanded/modal):**
-  - Trained and benchmarked **Logistic Regression, SVM, and Random Forest** models on clinical thyroid data
-  - Achieved **95% classification accuracy** through thorough EDA, data cleaning, and feature engineering
-  - Conducted performance benchmarking across algorithms using precision, recall, F1-score, and ROC-AUC
-  - Complete pipeline: data ingestion → cleaning → EDA → feature engineering → model training → evaluation
+  > Autonomous edge computer vision framework protecting agricultural perimeters from primate crop-raiding and wildlife hazards using a dual-model YOLOv8 ensemble.
+- **Full description:**
+  - Solved the **MS-COCO primate gap** by fine-tuning YOLOv8 on **5,355 Roboflow images** with human & foliage counter-examples (**75.1% mAP₅₀**)
+  - Engineered a **hierarchical dual-model ensemble** with active counter-class suppression shielding workers and livestock
+  - Implemented **dynamic troop-context relabeling** to eliminate back-facing monkey misclassification as critical bear alerts
+  - Built a **temporal persistence engine (≥ 2.0s)** with real-time Flask & Socket.IO telemetry, eliminating single-frame false alarms
 
 ---
 
-### Project 3 — People.ai (Patented AI System)
+### Project 3 — A2-SCI (Touchless Spatial Computing & Air Mouse Interface)
+- **Name:** A2-SCI — Touchless Spatial Computing & Air Mouse Interface
+- **GitHub:** https://github.com/AARUSH-WALI/TouchlessMouse
+- **Year:** 2025
+- **Status badge:** 🖐️ Spatial HCI / Assistive
+- **Stack badge tags:** MediaPipe · PyTorch · Bi-LSTM · One-Euro Filter · WebAssembly · OpenCV · HCI · Python
+- **Short description (card):**
+  > Vision-guided spatial computing framework eliminating physical mouse contact for sterile surgical PACS CT/MRI viewing and motor-impaired tremor accessibility via standard webcams.
+- **Full description:**
+  - Engineered a **4-stage ML ensemble pipeline**: 21 3D hand skeletal landmarks + Bi-LSTM kinematics achieving **98.4% gesture accuracy**
+  - Designed a **neuromuscular tremor discriminator** with adaptive **One-Euro filtering** achieving **< 1.2 px cursor stillness at rest**
+  - Built multi-domain workstations including a **Sterile Surgical PACS CT/MRI viewer** with real-time edge contour & Hounsfield Unit density inference
+  - Operates at ultra-low **38 ms end-to-end optical latency** with 100% edge privacy, zero telemetry, and native OS daemon integration
+
+---
+
+### Project 4 — People.ai (Patented AI System)
 - **Name:** People.ai — AI Recruitment Intelligence System
 - **GitHub:** https://github.com/AARUSH-WALI
 - **Year:** 2025
@@ -156,6 +172,22 @@ Build a **stunning, modern, single-page portfolio website** for Aarush Wali — 
   - Engineered the core ML pipeline: data parsing, **Big Five trait integration**, multi-class fitment and binary retention-prediction models
   - Validated using **5-fold cross-validation and ROC-based threshold tuning**
   - Designed **prediction-serving architecture** (Supabase + REST APIs, RBAC) reducing manual evaluation time by **60%**
+
+---
+
+### Project 5 — Thyroid Disease Detection System
+- **Name:** Thyroid Disease Detection System
+- **GitHub:** https://github.com/AARUSH-WALI
+- **Year:** 2024
+- **Status badge:** ⚙️ Research Project
+- **Stack badge tags:** Python · Scikit-learn · Pandas · NumPy · EDA · Feature Engineering · Model Benchmarking
+- **Short description (card):**
+  > ML classification system detecting thyroid disorders — benchmarked Logistic Regression, SVM, and Random Forest achieving 95% accuracy.
+- **Full description:**
+  - Trained and benchmarked **Logistic Regression, SVM, and Random Forest** models on clinical thyroid data
+  - Achieved **95% classification accuracy** through thorough EDA, data cleaning, and feature engineering
+  - Conducted performance benchmarking across algorithms using precision, recall, F1-score, and ROC-AUC
+  - Complete pipeline: data ingestion → cleaning → EDA → feature engineering → model training → evaluation
 
 ---
 
